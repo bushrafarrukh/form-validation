@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="Description" content="Enter your description here"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link rel="stylesheet" href="assets/css/style.css">
+<title>Title</title>
+</head>
+<body>
+<div class="container">
+    <h1 class="display-2 text-center p-5 fw-bold">Login Into Account</h1>
+    <form action="welcome.html" onsubmit="return validate()"> 
+        <table class="table">
+            <tr>
+                <td><input type="text" placeholder="Enter the Username" class="form-control" id="uname"></td>
+                <td><p class="text-danger fw-bold" id="uerror" style="visibility: hidden;">Username not Valid❌❌</p></td>
+            </tr>
+            <tr>
+                <td><input type="password" placeholder="Enter the Password" class="form-control" id="pass"></td>
+                <td><p class="text-danger fw-bold" id="perror" style="visibility: hidden;">Password Should Contain<br> <span> ❌At least one letter (uppercase or lowercase). <br> ❌ At least one digit <br> ❌ Minimum length of 8 characters</span></p></td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="Login" class="btn btn-success btn-lg"></td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+<script>
+    function validate(){
+       var uname=document.getElementById('uname');
+       var pass=document.getElementById('pass');
+       var usercheck=/^[A-Za-z_-]+[0-9]{3,30}$/;
+       var passcheck=/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/
+//        At least one letter (uppercase or lowercase).
+// At least one digit.
+// Minimum length of 8 characters.
+       var invalid=false; 
+    if(usercheck.test(uname.value)){
+        document.getElementById('uname').style.border="3px solid green";
+        document.getElementById('uerror').style.visibility="hidden";
+        invalid=true; 
+    }
+    if(!usercheck.test(uname.value)){
+        document.getElementById('uname').style.border="3px solid red";
+        document.getElementById('uerror').style.visibility="visible"
+        invalid=false; 
+    }
+    if(passcheck.test(pass.value)){
+        document.getElementById('pass').style.border="3px solid green";
+        document.getElementById('perror').style.visibility="hidden";
+        invalid=true; 
+    }
+    if(!passcheck.test(pass.value)){
+        document.getElementById('pass').style.border="3px solid red";
+        document.getElementById('perror').style.visibility="visible"
+                invalid=false; 
+    }
+
+    if(passcheck.test(pass.value) && !usercheck.test(uname.value) ){
+        invalid=false; 
+    }
+    if(passcheck.test(pass.value) && usercheck.test(uname.value) ){
+        invalid=true; 
+    }
+   
+    return invalid
+}
+       
+       
+
+
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
+</body>
+</html>
